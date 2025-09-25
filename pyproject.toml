@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kortana"
+version = "0.1.0"
+description = "Autonomous AI agent orchestration toolkit for software/cloud development"
+readme = "README.md"
+authors = [{name = "Kortana"}]
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.7",
+    "networkx>=3.2",
+    "aiohttp>=3.9",
+    "gitpython>=3.1",
+    "typer>=0.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+kortana = "kortana.cli:app"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "N", "B", "A", "C4", "RUF"]
+ignore = ["E203", "E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["kortana"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["."]
